@@ -1,0 +1,141 @@
+.navpopup {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  visibility: hidden;
+  transition: opacity 0.5s linear;
+  background-color: rgba(0, 0, 0, .3);
+  opacity: 0;
+}
+
+.navpopup_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navpopup__container {
+  width: 67.71%;
+  height: 100%;
+  background-color: #202020;
+  top: 0;
+  right: 0;
+  position: relative;
+}
+
+.navpopup__close {
+  margin: 0;
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  width: 31px;
+  height: 31px;
+  background-color: transparent;
+  background-image: url(../../../../images/close.svg);
+  transition: .4s;
+}
+
+.navpopup__close:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.navpopup__nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  height: 100vh;
+}
+
+.navpopup__links {
+  margin: 159px 0 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 0;
+  list-style: none;
+}
+
+.navpopup__item {
+  margin-bottom: 28px;
+}
+
+.navpopup__item_last {
+  justify-self: end;
+}
+
+.navpopup__link {
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-decoration: none;
+  transition: .4s;
+}
+
+.navpopup__link:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.navpopup__link_current {
+  border-bottom: 2px solid #FFFFFF;
+  padding-bottom: 4px;
+}
+
+.navpopup__button {
+  margin-bottom: 90px;
+  padding: 0 12px;
+  border: 2px solid rgba(170, 170, 170, .2);
+  border-radius: 15px;
+  background-color: transparent;
+  box-sizing: border-box;
+  width: 100px;
+  height: 32px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  background-image: url(../../../../images/account-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center left 12px;
+  text-align: right;
+  transition: .4s;
+}
+
+.navpopup__button:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+@media screen and (max-width: 425px) {
+  .navpopup__container {
+    width: 100%;
+  }
+  .navpopup__close {
+    top: 14px;
+    right: 14px;
+  }
+  .navpopup__links {
+    margin-top: 144px;
+  }
+  .navpopup__item {
+    margin-bottom: 24px;
+  }
+  .navpopup__button {
+    margin-bottom: 46px;
+  }
+  .navpopup__link_current {
+    padding-bottom: 7px;
+  }
+}

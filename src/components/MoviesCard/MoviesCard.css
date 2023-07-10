@@ -1,0 +1,103 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.card__image {
+  border-radius: 6px;
+  width: 100%;
+  border: none;
+}
+
+.card__info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__title {
+  margin: 14px 30px 0 14px;
+  font-size: 13px;
+  max-height: 16px;
+  font-weight: 500;
+  color: #FFFFFF;
+  width: 250px;
+}
+
+.card__duration {
+  margin: 14px 14px 0 0;
+  background-color: #2F2F2F;
+  border-radius: 3px;
+  color: #8B8B8B;
+  text-align: center;
+  font-size: 11px;
+  line-height: 10px;
+  font-weight: 400;
+  padding: 5px 8px;
+}
+
+.card__save {
+  visibility: hidden;
+  background-color: #313131;
+  border: none;
+  border-radius: 11px;
+  padding: 6px 10px;
+  color: #FFFFFF;
+  font-size: 10px;
+  line-height: 9px;
+  font-weight: 400;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  transition: .4s;
+}
+
+.card:hover .card__save {
+  visibility: visible;
+}
+
+.card__save:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.card__saved {
+  width: 21px;
+  height: 21px;
+  background-color: #EE3465;
+  background-image: url(../../images/check.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+@media screen and (max-width: 1279px) {
+  .card__title {
+    margin: 25px 0 0 0;
+  }
+  .card__duration {
+    margin: 25px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .card__title {
+    margin-top: 16px;
+    width: 240px;
+    font-size: 12px;
+    max-height: 15px;
+  }
+  .card__duration {
+    margin-top: 16px;
+  }
+}
+

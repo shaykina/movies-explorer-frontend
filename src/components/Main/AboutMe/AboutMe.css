@@ -1,0 +1,124 @@
+.about-me {
+  padding-top: 110px;
+}
+
+.about-me__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 66px;
+}
+
+.about-me__text {
+  max-width: 600px;
+  color: #FFFFFF;
+}
+
+.about-me__name {
+  margin: 0;
+  font-size: 50px;
+  line-height: 58px;
+  font-weight: 400;
+  letter-spacing: -1.8px;
+}
+
+.about-me__job {
+  margin: 18px 0 26px;
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.about-me__bio {
+  margin: 0 0 99px;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.about-me__github {
+  margin: 0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFFFFF;
+  transition: .4s;
+}
+
+.about-me__github:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1239px) {
+  .about-me {
+    padding: 90px 50px 0;
+  }
+  .about-me__text {
+    width: 54.49%;
+  }
+  .about-me__name {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .about-me__job {
+    margin: 16px 0 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-me__bio {
+    margin-bottom: 87px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-me {
+    padding: 70px 14px 0;
+  }
+  .about-me__text {
+    width: 100%;
+  }
+  .about-me__photo {
+    width: 292px;
+    height: 352px;
+    align-self: center;
+  }
+  .about-me__info {
+    flex-direction: column-reverse;
+    padding-top: 60px;
+  }
+  .about-me__name {
+    margin-top: 40px;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: -1px;
+  }
+  .about-me__job {
+    margin: 20px 0;
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-me__bio {
+    margin-bottom: 40px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
