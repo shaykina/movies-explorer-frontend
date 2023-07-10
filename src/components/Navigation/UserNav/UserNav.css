@@ -35,6 +35,7 @@
   font-weight: 500;
   line-height: 16px;
   transition: .4s;
+  text-decoration: none;
 }
 
 .user-nav__enter:hover {

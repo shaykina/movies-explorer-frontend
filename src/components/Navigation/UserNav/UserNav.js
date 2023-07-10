@@ -8,9 +8,7 @@ function UserNav() {
         <Link to={'/signup'} className="user-nav__register">Регистрация</Link>
       </li>
       <li className="user-nav__item">
-        <Link to={'/signin'}>
-          <button className="user-nav__enter" type="button">Войти</button>
-        </Link>
+        <Link to={'/signin'} className="user-nav__enter">Войти</Link>
       </li>
     </ul>
   )

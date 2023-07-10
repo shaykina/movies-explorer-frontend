@@ -5,3 +5,8 @@
   flex-direction: column;
   background-color: #202020;
 }
+
+.app__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}

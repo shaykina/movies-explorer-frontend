@@ -40,33 +40,45 @@
 }
 
 .promo__image {
-  width: 722px;
-  height: 244px;
   margin-top: 102px;
   margin-right: 0;
   align-self: end;
+  max-width: 100%;
+  height: auto;
 }
 
 @media screen and (max-width: 1239px) {
   .promo {
     padding: 300px 0 70px;
   }
+
   .promo::before {
     width: 0;
   }
+
   .promo::after {
     width: 0;
   }
+
   .promo__heading {
     width: 88.54%;
     text-align: center;
     margin: 0 auto;
   }
+
   .promo__image {
-    margin-top: 140px;
-    width: 680px;
+    display: block;
+    margin: 140px auto 0;
+    max-width: 680px;
+    max-height: 230px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .promo__image {
     height: 230px;
-    align-self: center;
+    max-width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -74,13 +86,17 @@
   .promo {
     padding: 183px 0 40px;
   }
+
   .promo__heading {
     width: 93.75%;
     font-size: 31px;
     line-height: 39px;
     letter-spacing: -1.5px;
   }
+
   .promo__image {
     margin-top: 60px;
+    max-width: 100%;
+    object-fit: cover;
   }
 }
