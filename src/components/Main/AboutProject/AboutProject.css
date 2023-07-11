@@ -1,0 +1,141 @@
+.about-project {
+  padding: 110px 0;
+}
+
+.about-project__heading {
+  margin: 0;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #FFFFFF;
+  letter-spacing: -1px;
+  border-bottom: 1px solid #DADADA;
+}
+
+.about-project__text {
+  padding: 70px 0 112px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  color: #FFFFFF;
+  font-weight: 400;
+}
+
+.about-project__column {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-project__first-paragraph {
+  margin: 0 0 26px;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+}
+
+.about-project__second-paragraph {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.about-project__grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.about-project__one-week {
+  background-color: #3DDC84;
+  color: #000000;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 9px 14px;
+}
+
+.about-project__four-weeks {
+  background-color: #303030;
+  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  padding: 9px 14px;
+}
+
+.about-project__grid-text {
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  margin: 0;
+  padding-top: 14px;
+}
+
+@media screen and (max-width: 1239px) {
+  .about-project {
+    padding: 92px 50px;
+  }
+  .about-project__grid {
+    grid-template-columns: 1.05fr 3.95fr;
+  }
+  .about-project__text {
+    gap: 30px;
+    padding: 70px 0 93px;
+  }
+  .about-project__column {
+    width: 47.75%;
+  }
+  .about-project__first-paragraph {
+    margin-bottom: 22px;
+  }
+  .about-project__second-paragraph {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-project__grid-text {
+    color: #A0A0A0;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+  .about-project__text {
+    flex-direction: column;
+    gap: 56px;
+    padding: 60px 0;
+  }
+  .about-project__column {
+    width: 100%;
+  }
+  .about-project__first-paragraph {
+    margin-bottom: 16px;
+    font-size: 18px;
+    letter-spacing: -0.7px;
+    line-height: 22px;
+  }
+  .about-project__second-paragraph {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-project__grid {
+    grid-template-columns: 1.76fr 3.24fr;
+  }
+  .about-project__one-week {
+    font-size: 11px;
+    padding: 11px 10px;
+    flex-wrap: nowrap;
+  }
+  .about-project__four-weeks {
+    font-size: 11px;
+    padding: 11px 10px;
+  }
+  .about-project__grid-text {
+    font-size: 11px;
+    line-height: 13px;
+    padding-top: 10px;
+  }
+}

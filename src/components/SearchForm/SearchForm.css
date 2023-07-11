@@ -1,0 +1,139 @@
+.search {
+  padding: 70px 0 47px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search__form {
+  position: relative;
+}
+
+.search__input {
+  margin: 0;
+  padding: 0 0 13px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #424242;
+  width: 100%;
+  font-size: 28px;
+  font-weight: 500;
+  color: #8B8B8B;
+}
+
+.search__submit {
+  width: 80px;
+  height: 34px;
+  background-color: #4285F4;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 17px;
+  background-image: url(../../images/loupe.svg);
+  background-position: center;
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  bottom: 13px;
+  transition: .4s;
+}
+
+.search__submit:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.search__checkbox {
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search__checkbox-active {
+  content: "";
+  position: absolute;
+  top: 34px;
+  left: 0;
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #424242;
+}
+
+.search__checkbox-active::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  transition: left .4s;
+}
+
+.search__checkbox-input {
+  opacity: 0;
+  position: absolute;
+  top: 34px;
+  left: 0;
+}
+
+.search__checkbox-input:checked ~ .search__checkbox-active {
+  background-color: #3DDC84;
+}
+
+.search__checkbox-input:checked ~ .search__checkbox-active::before {
+  left: 18px;
+}
+
+.search__checkbox-text {
+  margin: 35px 0 0 50px;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 769px) {
+  .search {
+    padding: 80px 0 60px;
+  }
+  .search__checkbox {
+    justify-content: flex-end;
+  }
+  .search__checkbox-active {
+    right: 0;
+    left: auto;
+  }
+  .search__checkbox-text {
+    margin-right: 52px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .search {
+    padding: 90px 4px 50px;
+  }
+  .search__checkbox {
+    margin-top: 6px;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+  .search__checkbox-active {
+    position: relative;
+  }
+  .search__checkbox-text {
+    margin: 35px 13px 0 0;
+    font-size: 11px;
+  }
+  .search__input {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .search__submit {
+    bottom: 9px;
+  }
+}
