@@ -20,7 +20,6 @@
 
 .profile__info {
   width: 100%;
-  list-style: none;
   margin: 0;
   padding: 0;
 }
@@ -33,7 +32,7 @@
   padding-bottom: 16px;
 }
 
-.profile__item:last-child {
+.profile__item:last-of-type {
   border: none;
   padding: 17px 0 0;
 }
@@ -48,14 +47,29 @@
 
 .profile__item-content {
   margin: 0;
+  padding: 0;
   font-size: 11px;
   line-height: 14px;
   font-weight: 400;
   color: #FFFFFF;
+  background-color: transparent;
+  border: none;
+  text-align: end;
+}
+
+.profile__item-content:focus {
+  outline: none;
+  border-bottom: 2px solid #3DDC84;
+}
+
+.profile__item-content_error {
+  color: #EE3465;
 }
 
 .profile__change {
-  margin: 220px 0 16px;
+  margin: 220px auto 16px;
+  width: 100%;
+  text-align: center;
   padding: 0;
   border: none;
   background-color: transparent;
@@ -71,6 +85,11 @@
   opacity: .6;
 }
 
+.profile__change:disabled {
+  background-color: #424242;
+  cursor: not-allowed;
+}
+
 .profile__out {
   margin: 0;
   padding: 0;
@@ -81,6 +100,7 @@
   font-weight: 400;
   color: #EE3465;
   transition: .4s;
+  text-decoration: none;
 }
 
 .profile__out:hover {
@@ -88,13 +108,29 @@
   opacity: .6;
 }
 
+.profile__error {
+  display: none;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 400;
+  color: #EE3465;
+  margin: 6px 0;
+  width: 100%;
+}
+
+.profile__error_visible {
+  display: inline-block;
+}
+
 @media screen and (max-width: 769px) {
   .profile__container {
     margin: 236px auto 269px;
   }
+
   .profile__heading {
     margin-bottom: 96px;
   }
+
   .profile__change {
     margin-top: 210px;
   }
@@ -105,9 +141,11 @@
     margin: 70px auto 40px;
     width: 260px;
   }
+
   .profile__heading {
     margin-bottom: 80px;
   }
+
   .profile__change {
     margin-top: 379px;
   }

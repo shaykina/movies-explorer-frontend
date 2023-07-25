@@ -77,23 +77,29 @@
   .about-project {
     padding: 92px 50px;
   }
+
   .about-project__grid {
     grid-template-columns: 1.05fr 3.95fr;
   }
+
   .about-project__text {
     gap: 30px;
     padding: 70px 0 93px;
   }
+
   .about-project__column {
     width: 47.75%;
   }
+
   .about-project__first-paragraph {
     margin-bottom: 22px;
   }
+
   .about-project__second-paragraph {
     font-size: 12px;
     line-height: 18px;
   }
+
   .about-project__grid-text {
     color: #A0A0A0;
   }
@@ -103,36 +109,44 @@
   .about-project {
     padding: 70px 18px;
   }
+
   .about-project__text {
     flex-direction: column;
     gap: 56px;
     padding: 60px 0;
   }
+
   .about-project__column {
     width: 100%;
   }
+
   .about-project__first-paragraph {
     margin-bottom: 16px;
     font-size: 18px;
     letter-spacing: -0.7px;
     line-height: 22px;
   }
+
   .about-project__second-paragraph {
     font-size: 11px;
     line-height: 16px;
   }
+
   .about-project__grid {
     grid-template-columns: 1.76fr 3.24fr;
   }
+
   .about-project__one-week {
     font-size: 11px;
     padding: 11px 10px;
     flex-wrap: nowrap;
   }
+
   .about-project__four-weeks {
     font-size: 11px;
     padding: 11px 10px;
   }
+
   .about-project__grid-text {
     font-size: 11px;
     line-height: 13px;

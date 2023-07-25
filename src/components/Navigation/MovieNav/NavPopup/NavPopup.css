@@ -122,19 +122,24 @@
   .navpopup__container {
     width: 100%;
   }
+
   .navpopup__close {
     top: 14px;
     right: 14px;
   }
+
   .navpopup__links {
     margin-top: 144px;
   }
+
   .navpopup__item {
     margin-bottom: 24px;
   }
+
   .navpopup__button {
     margin-bottom: 46px;
   }
+
   .navpopup__link_current {
     padding-bottom: 7px;
   }

@@ -4,7 +4,7 @@ import Heading from '../../Heading/Heading.js';
 function Techs() {
   return (
     <section className="techs">
-      <Heading title="Технологии" className="techs__heading-special"/>
+      <Heading title="Технологии" className="techs__heading-special" />
       <h3 className="techs__heading">7 технологий</h3>
       <p className="techs__text">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
       <ul className="techs__list">
