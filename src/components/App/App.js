@@ -178,32 +178,54 @@ function App() {
     setIsLoading(true);
     setIsChecked(checked);
     setKeyword(searchTerm);
-    api.getMovies(searchTerm)
-      .then((movies) => {
-        let filteredMovies = movies.filter((movie) => {
-          return (
-            movie.nameRU.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            movie.nameEN.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            movie.director.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+
+    const storedMovies = localStorage.getItem('movies');
+
+    if (!storedMovies) {
+      api.getMovies(searchTerm)
+        .then((movies) => {
+          localStorage.removeItem('movies');
+          localStorage.setItem('movies', JSON.stringify(movies));
+          let filteredMovies = movies.filter((movie) => {
+            return (
+              movie.nameRU.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              movie.nameEN.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              movie.director.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+          });
+          if (checked) {
+            filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
+          }
+          setIsSearched(true);
+          if (filteredMovies) {
+            setMovies(filteredMovies);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
-        if (checked) {
-          filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
-        }
-        localStorage.removeItem('movies');
-        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-        setIsSearched(true);
-        if (filteredMovies) {
-          setMovies(filteredMovies);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMessage('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-      })
-      .finally(() => {
-        setIsLoading(false);
+    } else {
+      const movies = JSON.parse(storedMovies);
+      let filteredMovies = movies.filter((movie) => {
+        return (
+          movie.nameRU.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          movie.nameEN.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          movie.director.toLowerCase().includes(searchTerm.toLowerCase())
+        )
       });
+      if (checked) {
+        filteredMovies = filteredMovies.filter(movie => movie.duration <= 40);
+      }
+      setIsSearched(true);
+      if (filteredMovies) {
+        setMovies(filteredMovies);
+      }
+      setIsLoading(false);
+    }
   }
 
   function handleSavedSearch(searchTerm, checked) {
@@ -338,6 +360,8 @@ function App() {
                       setIsFiltered={setIsFiltered}
                       isChecked={isChecked}
                       keyword={keyword}
+                      movies={movies}
+                      setMovies={setMovies}
                     />
                     <Footer />
                   </>

@@ -3,10 +3,7 @@ import SearchForm from '../SearchForm/SearchForm.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Preloader from '../Movies/Preloader/Preloader.js';
 
-function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, onSave, setSavedMovies, onDeleteCard, isFiltered, setIsFiltered, isChecked, keyword }) {
-  const storedMovies = localStorage.getItem('movies');
-  const parsedMovies = JSON.parse(storedMovies || '[]');
-
+function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, onSave, setSavedMovies, onDeleteCard, isFiltered, setIsFiltered, isChecked, keyword, movies, setMovies }) {
   return (
     <main className="movies">
       <SearchForm
@@ -17,7 +14,7 @@ function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, on
       {isLoading ?
         <Preloader /> :
         (
-          isSearched && parsedMovies.length === 0 ?
+          isSearched && movies.length === 0 ?
             <p className="movies__error-text">Ничего не найдено</p> :
             <MoviesCardList
               windowWidth={windowWidth}
@@ -26,6 +23,8 @@ function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, on
               onDeleteCard={onDeleteCard}
               isFiltered={isFiltered}
               setIsFiltered={setIsFiltered}
+              movies={movies}
+              setMovies={setMovies}
             />
         )}
       {errorMessage && <p className="movies__error-text">{errorMessage}</p>}

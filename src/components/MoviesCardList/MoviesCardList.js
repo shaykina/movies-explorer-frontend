@@ -3,7 +3,7 @@ import MoviesCard from '../MoviesCard/MoviesCard.js';
 import { MOVIES_URL } from '../../utils/MoviesApi.js';
 import { useLocation } from 'react-router-dom';
 
-function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, savedMovies, filteredMovies, isFiltered, setIsFiltered, setFilteredMovies }) {
+function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, savedMovies, filteredMovies, isFiltered, setIsFiltered, setFilteredMovies, movies, setMovies }) {
 
   const [cardsNumber, setCardsNumber] = React.useState();
   const [additionalCardsNumber, setAdditionalCardsNumber] = React.useState();
@@ -26,18 +26,14 @@ function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, sav
   }
 
   function handleCardsClick() {
-    const storedMovies = localStorage.getItem('movies');
-    const parsedMovies = JSON.parse(storedMovies || '[]');
     const prevCardsNumber = cardsNumber;
-    const additionalMovies = parsedMovies.slice(prevCardsNumber, prevCardsNumber + additionalCardsNumber);
+    const additionalMovies = movies.slice(prevCardsNumber, prevCardsNumber + additionalCardsNumber);
     setInitialMovies((prevMovies) => [...prevMovies, ...additionalMovies]);
-    if (cardsNumber <= parsedMovies.length) {
+    if (cardsNumber <= movies.length) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
-    console.log(parsedMovies.length);
-    console.log(cardsNumber);
     setCardsNumber(prevCardsNumber + additionalCardsNumber);
   }
 
@@ -46,21 +42,24 @@ function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, sav
   }, [windowWidth]);
 
   React.useEffect(() => {
-    const storedMovies = localStorage.getItem('movies');
-    const parsedMovies = JSON.parse(storedMovies || '[]');
-    setInitialMovies(parsedMovies.slice(0, cardsNumber));
-    if (cardsNumber <= parsedMovies.length) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
+    if (movies) {
+      setInitialMovies(movies.slice(0, cardsNumber));
+      if (cardsNumber <= movies.length) {
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
     }
-  }, [cardsNumber]);
+  }, [cardsNumber, movies]);
 
   React.useEffect(() => {
     const storedSaved = localStorage.getItem('saved');
     const parsedSaved = JSON.parse(storedSaved || '[]');
     setSavedMovies(parsedSaved);
     setIsFiltered(false);
+    if (movies) {
+      setMovies(movies);
+    }
   }, []);
 
   return (
