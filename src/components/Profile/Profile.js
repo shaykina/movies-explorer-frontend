@@ -9,6 +9,7 @@ function Profile({ signOut, onUpdate, info, setInfo }) {
   const [isFormValid, setIsFormValid] = React.useState(false);
   const [isEditActive, setIsEditActive] = React.useState(false);
   const [isSubmitButtonActive, setIsSubmitButtonActive] = React.useState(false);
+  const [isUpdateSuccessful, setIsUpdateSuccessful] = React.useState(false);
   const formRef = React.useRef();
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -69,7 +70,13 @@ function Profile({ signOut, onUpdate, info, setInfo }) {
     validateInput(emailInputElement, setEmailError);
     validateInput(nameInputElement, setNameError);
     if (emailInputElement.validity.valid && nameInputElement.validity.valid) {
-      onUpdate();
+      onUpdate()
+        .then(() => {
+          setIsUpdateSuccessful(true);
+        })
+        .catch(() => {
+          setIsUpdateSuccessful(false);
+        });
     }
     setIsFormValid(emailInputElement.validity.valid && nameInputElement.validity.valid);
     formRef.current = evt.target;
@@ -101,6 +108,7 @@ function Profile({ signOut, onUpdate, info, setInfo }) {
           <span className={`profile__error email__error ${emailError ? "profile__error_visible" : ""}`}>{emailError}</span>
           {isEditActive && <button className="profile__change" disabled={!isSubmitButtonActive || nameError || emailError} type="submit">Сохранить</button>}
         </form>
+        <span className={`profile__success ${isUpdateSuccessful ? "profile__success_visible" : ""}`}>Данные успешно сохранены!</span>
         {!isEditActive && <button className="profile__change" type="button" onClick={editProfile}>Редактировать</button>}
         <Link className="profile__out" type="button" onClick={signOut} to="/">Выйти из аккаунта</Link>
       </div>

@@ -155,7 +155,7 @@ function App() {
   }
 
   function updateUserInfo() {
-    mainApi.updateUserInfo(info.name, info.email)
+    return mainApi.updateUserInfo(info.name, info.email)
       .then(() => {
         setInfo({ name: '', email: '' });
         setCurrentUser(info);
