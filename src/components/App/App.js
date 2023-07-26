@@ -52,6 +52,8 @@ function App() {
         setIsLoggedIn(true);
         navigate('/movies', { replace: true });
       })
+    } else {
+      navigate('/');
     }
   }
 
