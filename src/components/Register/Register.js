@@ -62,7 +62,9 @@ function Register({ onRegister, formValue, setFormValue }) {
   return (
     <section className="register">
       <div className="register__container">
-        <img className="register__logo" src={logo} alt="логотип" />
+        <Link className="register__image-link" to="/">
+          <img className="register__logo" src={logo} alt="логотип" />
+        </Link>
         <h1 className="register__heading">Добро пожаловать!</h1>
         <form className="register__form" name="register" onSubmit={handleSubmit}>
           <fieldset className="register__fieldset">

@@ -55,7 +55,9 @@ function Login({ onLogin, loginInfo, setLoginInfo }) {
   return (
     <section className="login">
       <div className="login__container">
-        <img className="login__logo" src={logo} alt="логотип" />
+        <Link className="login__image-link">
+          <img className="login__logo" src={logo} alt="логотип" />
+        </Link>
         <h1 className="login__heading">Рады видеть!</h1>
         <form className="login__form" name="login" onSubmit={handleSubmit}>
           <fieldset className="login__fieldset">
