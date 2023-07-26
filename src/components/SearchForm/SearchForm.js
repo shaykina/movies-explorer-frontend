@@ -93,7 +93,7 @@ function SearchForm({ onSubmit, onSavedSearch, isChecked, keyword }) {
     <section className="search">
       <form className="search__form" name="search" onSubmit={location === '/movies' ? handleSubmit : handleSavedSubmit} noValidate>
         <input className={`search__input ${searchError ? "search__input_error" : ""}`} type="text" name="movie" id="movie" placeholder="Фильм" onInput={handleSearchInput}
-          minLength="2" maxLength="40" value={searchTerm || ''} required />
+          value={searchTerm || ''} required />
         <span className={`search__error ${searchError ? "search__error_visible" : ""}`}>{searchError}</span>
         <button className="search__submit" type="submit" disabled={searchError}></button>
       </form>
