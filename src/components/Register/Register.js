@@ -10,6 +10,8 @@ function Register({ onRegister, formValue, setFormValue }) {
   const [isFormValid, setIsFormValid] = React.useState(false);
   const formRef = React.useRef();
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   React.useEffect(() => {
     if (isFormValid && formRef.current) {
       setIsFormValid(false);
@@ -24,8 +26,16 @@ function Register({ onRegister, formValue, setFormValue }) {
     }
   }
 
+  const validateEmail = (inputElement, setError) => {
+    if (!emailRegex.test(inputElement.value)) {
+      setError("Неверный формат email");
+    } else {
+      setError("");
+    }
+  }
+
   const handleEmailInput = (evt) => {
-    validateInput(evt.target, setEmailError);
+    validateEmail(evt.target, setEmailError);
   }
 
   const handlePasswordInput = (evt) => {
@@ -49,7 +59,7 @@ function Register({ onRegister, formValue, setFormValue }) {
     const emailInputElement = evt.target.elements.email;
     const passwordInputElement = evt.target.elements.password;
     const nameInputElement = evt.target.elements.name;
-    validateInput(emailInputElement, setEmailError);
+    validateEmail(emailInputElement, setEmailError);
     validateInput(passwordInputElement, setPasswordError);
     validateInput(nameInputElement, setNameError);
     if (emailInputElement.validity.valid && passwordInputElement.validity.valid && nameInputElement.validity.valid) {
