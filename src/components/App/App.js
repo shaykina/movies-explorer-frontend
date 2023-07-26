@@ -122,10 +122,34 @@ function App() {
 
   function signOut() {
     localStorage.removeItem('token');
-    setIsLoggedIn(false);
     localStorage.removeItem('movies');
     localStorage.removeItem('keyword');
     localStorage.removeItem('checked');
+    localStorage.removeItem('saved');
+    localStorage.removeItem('filtered');
+
+    setIsLoggedIn(false);
+    setMovies([]);
+    setIsFiltered(false);
+    setErrorMessage('');
+    setIsSearched(false);
+    setWindowWidth(undefined);
+    setCurrentUser({});
+    setLoginInfo({
+      email: '',
+      password: ''
+    });
+    setFormValue({
+      name: '',
+      email: '',
+      password: ''
+    });
+    setInfo({
+      name: '',
+      email: '',
+    });
+    setSavedMovies([]);
+    setFilteredMovies([]);
     setIsChecked(false);
     setKeyword('');
   }
