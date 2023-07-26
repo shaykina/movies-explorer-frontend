@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import '../../index.css';
 import Header from '../Header/Header.js';
 import Main from '../Main/Main.js';
@@ -25,6 +25,7 @@ function App() {
   const [windowWidth, setWindowWidth] = React.useState();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [isTokenChecked, setIsTokenChecked] = React.useState(false);
   const [loginInfo, setLoginInfo] = React.useState({
     email: '',
     password: ''
@@ -50,10 +51,11 @@ function App() {
     if (token) {
       mainApi.checkToken(token).then(() => {
         setIsLoggedIn(true);
-        navigate('/movies', { replace: true });
+        setIsTokenChecked(true);
       })
     } else {
       navigate('/');
+      setIsTokenChecked(true);
     }
   }
 
@@ -290,95 +292,99 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <div className="app__container">
-          <Routes>
-            <Route path="/" element={
-              <>
-                <Header
-                  loggedIn={isLoggedIn}
-                />
-                <Main />
-                <Footer />
-              </>
-            } />
-            <Route path="/signup" element={
-              <Register
-                onRegister={handleRegister}
-                formValue={formValue}
-                setFormValue={setFormValue}
-              />
-            } />
-            <Route path="/signin" element={
-              <Login
-                onLogin={handleLogin}
-                loginInfo={loginInfo}
-                setLoginInfo={setLoginInfo}
-              />
-            } />
-            <Route path="/movies" element={
-              <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
+          {isTokenChecked && (
+            <Routes>
+              <Route path="/" element={
                 <>
                   <Header
                     loggedIn={isLoggedIn}
                   />
-                  <Movies
-                    onSubmit={handleSearchSubmit}
-                    isLoading={isLoading}
-                    errorMessage={errorMessage}
-                    isSearched={isSearched}
-                    windowWidth={windowWidth}
-                    onSave={handleSavingCard}
-                    onDeleteCard={handleDeleteCard}
-                    setSavedMovies={setSavedMovies}
-                    isFiltered={isFiltered}
-                    setIsFiltered={setIsFiltered}
-                    isChecked={isChecked}
-                    keyword={keyword}
-                  />
+                  <Main />
                   <Footer />
                 </>
               } />
-            } />
-            <Route path="/saved-movies" element={
-              <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
-                <>
-                  <Header
-                    loggedIn={isLoggedIn}
+              <Route path="/signup" element={
+                isLoggedIn ? <Navigate to="/" /> :
+                  <Register
+                    onRegister={handleRegister}
+                    formValue={formValue}
+                    setFormValue={setFormValue}
                   />
-                  <SavedMovies
-                    onDeleteCard={handleDeleteSavedCard}
-                    setSavedMovies={setSavedMovies}
-                    savedMovies={savedMovies}
-                    filteredMovies={filteredMovies}
-                    isFiltered={isFiltered}
-                    setIsFiltered={setIsFiltered}
-                    onSavedSearch={handleSavedSearch}
-                    setFilteredMovies={setFilteredMovies}
-                    isChecked={isChecked}
-                  />
-                  <Footer />
-                </>
               } />
-            } />
-            <Route path="/profile" element={
-              <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
-                <>
-                  <Header
-                    loggedIn={isLoggedIn}
+              <Route path="/signin" element={
+                isLoggedIn ? <Navigate to="/" /> :
+                  <Login
+                    onLogin={handleLogin}
+                    loginInfo={loginInfo}
+                    setLoginInfo={setLoginInfo}
                   />
-                  <Profile
-                    signOut={signOut}
-                    onUpdate={updateUserInfo}
-                    info={info}
-                    setInfo={setInfo}
-                  />
-                </>
               } />
-            } />
-            <Route path="/*"
-              element={
-                <NotFound />
+              <Route path="/movies" element={
+                <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
+                  <>
+                    <Header
+                      loggedIn={isLoggedIn}
+                    />
+                    <Movies
+                      onSubmit={handleSearchSubmit}
+                      isLoading={isLoading}
+                      errorMessage={errorMessage}
+                      isSearched={isSearched}
+                      windowWidth={windowWidth}
+                      onSave={handleSavingCard}
+                      onDeleteCard={handleDeleteCard}
+                      setSavedMovies={setSavedMovies}
+                      isFiltered={isFiltered}
+                      setIsFiltered={setIsFiltered}
+                      isChecked={isChecked}
+                      keyword={keyword}
+                    />
+                    <Footer />
+                  </>
+                } />
               } />
-          </Routes>
+              <Route path="/saved-movies" element={
+                <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
+                  <>
+                    <Header
+                      loggedIn={isLoggedIn}
+                    />
+                    <SavedMovies
+                      onDeleteCard={handleDeleteSavedCard}
+                      setSavedMovies={setSavedMovies}
+                      savedMovies={savedMovies}
+                      filteredMovies={filteredMovies}
+                      isFiltered={isFiltered}
+                      setIsFiltered={setIsFiltered}
+                      onSavedSearch={handleSavedSearch}
+                      setFilteredMovies={setFilteredMovies}
+                      isChecked={isChecked}
+                    />
+                    <Footer />
+                  </>
+                } />
+              } />
+              <Route path="/profile" element={
+                <ProtectedRouteElement isLoggedIn={isLoggedIn} element={
+                  <>
+                    <Header
+                      loggedIn={isLoggedIn}
+                    />
+                    <Profile
+                      signOut={signOut}
+                      onUpdate={updateUserInfo}
+                      info={info}
+                      setInfo={setInfo}
+                    />
+                  </>
+                } />
+              } />
+              <Route path="/*"
+                element={
+                  <NotFound />
+                } />
+            </Routes>
+          )}
         </div>
       </div>
     </CurrentUserContext.Provider>
