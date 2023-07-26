@@ -34,7 +34,7 @@ function Profile({ signOut, onUpdate, info, setInfo }) {
 
   const handleEmailInput = (evt) => {
     validateInput(evt.target, setEmailError);
-    if (evt.target.value !== currentUser.name) {
+    if (evt.target.value !== currentUser.email) {
       setIsSubmitButtonActive(true);
     } else {
       setIsSubmitButtonActive(false);
