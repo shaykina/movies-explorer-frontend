@@ -1,15 +1,17 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-const savedMovies = JSON.parse(localStorage.getItem('saved') || '[]');
 
-function MoviesCard({ nameRU, imageUrl, duration, trailerLink, onSave, country, director, year, description, thumbnail, nameEN, movieId, onDeleteCard, setSavedMovies, setFilteredMovies }) {
+function MoviesCard({ nameRU, imageUrl, duration, trailerLink, onSave, country, director, year, description, thumbnail, nameEN, movieId, onDeleteCard, setSavedMovies, setFilteredMovies, savedMovies }) {
 
   const card = { nameRU, imageUrl, duration, trailerLink, country, director, year, description, thumbnail, nameEN, movieId };
   const [isSaved, setIsSaved] = React.useState(savedMovies.some(card => card.nameRU === nameRU));
   const location = useLocation().pathname;
 
   React.useEffect(() => {
-    const savedMovies = JSON.parse(localStorage.getItem('saved') || '[]');
+    setIsSaved(savedMovies.some(card => card.nameRU === nameRU));
+  }, [savedMovies, nameRU]);
+
+  React.useEffect(() => {
     setIsSaved(savedMovies.some(card => card.nameRU === nameRU));
   }, [location]);
 
@@ -19,26 +21,36 @@ function MoviesCard({ nameRU, imageUrl, duration, trailerLink, onSave, country, 
 
   function handleSaveClick(event) {
     event.stopPropagation();
-    onSave(card);
-    setIsSaved(true);
+    onSave(card)
+    .then(() => {
+      setIsSaved(true);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   function handleDeleteClick(event) {
     event.stopPropagation();
-    onDeleteCard(card);
+    onDeleteCard(card)
+    .then(() => {
+      setIsSaved(false);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     setSavedMovies(prevMovies => {
       const newSavedMovies = prevMovies.filter(movie => movie.movieId !== card.movieId);
       localStorage.setItem('saved', JSON.stringify(newSavedMovies));
       return newSavedMovies;
     });
-    if (location === '/saved-movies' && setFilteredMovies.lenghth > 0) {
+    if (location === '/saved-movies' && setFilteredMovies.length > 0) {
       setFilteredMovies(prevMovies => {
         const newFilteredMovies = prevMovies.filter(movie => movie._id !== card._id);
         localStorage.setItem('filtered', JSON.stringify(newFilteredMovies));
         return newFilteredMovies;
       });
     }
-    setIsSaved(false);
   }
 
   return (

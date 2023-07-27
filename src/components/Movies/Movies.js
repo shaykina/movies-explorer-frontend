@@ -3,7 +3,7 @@ import SearchForm from '../SearchForm/SearchForm.js';
 import MoviesCardList from '../MoviesCardList/MoviesCardList.js';
 import Preloader from '../Movies/Preloader/Preloader.js';
 
-function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, onSave, setSavedMovies, onDeleteCard, isFiltered, setIsFiltered, isChecked, keyword, movies, setMovies }) {
+function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, onSave, setSavedMovies, onDeleteCard, isFiltered, setIsFiltered, isChecked, keyword, movies, setMovies, savedMovies }) {
   return (
     <main className="movies">
       <SearchForm
@@ -25,6 +25,7 @@ function Movies({ onSubmit, isLoading, errorMessage, isSearched, windowWidth, on
               setIsFiltered={setIsFiltered}
               movies={movies}
               setMovies={setMovies}
+              savedMovies={savedMovies}
             />
         )}
       {errorMessage && <p className="movies__error-text">{errorMessage}</p>}

@@ -43,6 +43,7 @@ function App() {
   const [filteredMovies, setFilteredMovies] = React.useState(() => JSON.parse(localStorage.getItem('filtered') || '[]'));
   const [isChecked, setIsChecked] = React.useState(() => JSON.parse(localStorage.getItem('checked') || 'false'));
   const [keyword, setKeyword] = React.useState(() => localStorage.getItem('keyword') || '');
+  const [foundMovies, setFoundMovies] = React.useState(() => JSON.parse(localStorage.getItem('found') || '[]'));
 
   const navigate = useNavigate();
 
@@ -65,6 +66,8 @@ function App() {
     setSavedMovies(saved);
     const filtered = JSON.parse(localStorage.getItem('filtered') || '[]');
     setSavedMovies(filtered);
+    const found = JSON.parse(localStorage.getItem('found') || '[]');
+    setFoundMovies(found);
   }, [])
 
   React.useEffect(() => {
@@ -131,6 +134,7 @@ function App() {
     localStorage.removeItem('checked');
     localStorage.removeItem('saved');
     localStorage.removeItem('filtered');
+    localStorage.removeItem('found');
 
     setIsLoggedIn(false);
     setMovies([]);
@@ -154,6 +158,7 @@ function App() {
     });
     setSavedMovies([]);
     setFilteredMovies([]);
+    setFoundMovies([]);
     setIsChecked(false);
     setKeyword('');
   }
@@ -199,6 +204,8 @@ function App() {
           setIsSearched(true);
           if (filteredMovies) {
             setMovies(filteredMovies);
+            setFoundMovies(filteredMovies);
+            localStorage.setItem('found', JSON.stringify(filteredMovies));
           }
         })
         .catch((err) => {
@@ -223,6 +230,8 @@ function App() {
       setIsSearched(true);
       if (filteredMovies) {
         setMovies(filteredMovies);
+        setFoundMovies(filteredMovies);
+        localStorage.setItem('found', JSON.stringify(filteredMovies));
       }
       setIsLoading(false);
     }
@@ -251,7 +260,7 @@ function App() {
   }
 
   function handleSavingCard(card) {
-    mainApi.saveMovie(card)
+    return mainApi.saveMovie(card)
       .then((newCard) => {
         const updatedSavedMovies = [newCard, ...savedMovies];
         if (updatedSavedMovies) {
@@ -261,9 +270,6 @@ function App() {
         }
         return updatedSavedMovies;
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   function handleGettingSavedCards() {
@@ -275,7 +281,7 @@ function App() {
   }
 
   function handleDeleteSavedCard(card) {
-    mainApi.deleteMovie(card.movieId)
+    return mainApi.deleteMovie(card.movieId)
       .then(() => {
         handleGettingSavedCards();
         const updatedSavedMovies = savedMovies.filter(item => item._id !== card.movieId);
@@ -289,25 +295,19 @@ function App() {
           localStorage.setItem('filtered', JSON.stringify(updatedFilteredMovies));
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   function handleDeleteCard(card) {
     const storedSaved = localStorage.getItem('saved');
     const parsedSaved = JSON.parse(storedSaved || '[]');
     const matchingCard = parsedSaved.find(item => item.nameRU === card.nameRU);
-    mainApi.deleteMovie(matchingCard._id)
+    return mainApi.deleteMovie(matchingCard._id)
       .then(() => {
         const updatedSavedMovies = parsedSaved.filter(item => item._id !== matchingCard._id);
         localStorage.removeItem('saved');
         localStorage.setItem('saved', JSON.stringify(updatedSavedMovies));
         setSavedMovies(updatedSavedMovies);
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   return (
@@ -360,8 +360,9 @@ function App() {
                       setIsFiltered={setIsFiltered}
                       isChecked={isChecked}
                       keyword={keyword}
-                      movies={movies}
-                      setMovies={setMovies}
+                      movies={foundMovies}
+                      setMovies={setFoundMovies}
+                      savedMovies={savedMovies}
                     />
                     <Footer />
                   </>

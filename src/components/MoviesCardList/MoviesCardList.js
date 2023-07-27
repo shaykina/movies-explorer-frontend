@@ -83,6 +83,7 @@ function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, sav
               movieId={data.id}
               onDeleteCard={onDeleteCard}
               setSavedMovies={setSavedMovies}
+              savedMovies={savedMovies}
             />
           )
         })}
@@ -105,6 +106,7 @@ function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, sav
               onDeleteCard={onDeleteCard}
               setSavedMovies={setSavedMovies}
               setFilteredMovies={setFilteredMovies}
+              savedMovies={savedMovies}
             />
           )
         })}
@@ -127,6 +129,7 @@ function MoviesCardList({ windowWidth, onSave, onDeleteCard, setSavedMovies, sav
               onDeleteCard={onDeleteCard}
               setSavedMovies={setSavedMovies}
               setFilteredMovies={setFilteredMovies}
+              savedMovies={savedMovies}
             />
           )
         })}
