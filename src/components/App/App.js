@@ -53,6 +53,7 @@ function App() {
       mainApi.checkToken(token).then(() => {
         setIsLoggedIn(true);
         setIsTokenChecked(true);
+        navigate('/movies', { replace: true });
       })
     } else {
       navigate('/');
@@ -77,12 +78,6 @@ function App() {
   React.useEffect(() => {
     localStorage.setItem('filtered', JSON.stringify(filteredMovies));
   }, [filteredMovies]);
-
-  React.useEffect(() => {
-    if (loginInfo.email && loginInfo.password) {
-      handleLogin();
-    }
-  }, [loginInfo]);
 
   React.useEffect(() => {
     if (isLoggedIn) {
