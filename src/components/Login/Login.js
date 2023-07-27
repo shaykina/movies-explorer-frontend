@@ -65,7 +65,7 @@ function Login({ onLogin, loginInfo, setLoginInfo }) {
   return (
     <section className="login">
       <div className="login__container">
-        <Link className="login__image-link">
+        <Link className="login__image-link" to="/">
           <img className="login__logo" src={logo} alt="логотип" />
         </Link>
         <h1 className="login__heading">Рады видеть!</h1>
