@@ -93,7 +93,7 @@ function App() {
     }
   }, [isLoggedIn])
 
-  function handleLogin() {
+  function handleLogin(loginInfo) {
     if (!loginInfo.email || !loginInfo.password) {
       return;
     }
@@ -114,8 +114,7 @@ function App() {
   function handleRegister() {
     mainApi.register(formValue.name, formValue.email, formValue.password)
       .then(() => {
-        setLoginInfo({ email: formValue.email, password: formValue.password });
-        handleLogin();
+        handleLogin({ email: formValue.email, password: formValue.password });
       })
       .catch((err) => {
         console.log(err);

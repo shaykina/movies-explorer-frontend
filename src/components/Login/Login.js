@@ -56,7 +56,7 @@ function Login({ onLogin, loginInfo, setLoginInfo }) {
     validateEmail(emailInputElement, setEmailError);
     validateInput(passwordInputElement, setPasswordError);
     if (emailInputElement.validity.valid && passwordInputElement.validity.valid) {
-      onLogin();
+      onLogin({email: emailInputElement.value, password: passwordInputElement.value});
     }
     setIsFormValid(emailInputElement.validity.valid && passwordInputElement.validity.valid);
     formRef.current = evt.target;
