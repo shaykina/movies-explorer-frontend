@@ -4,12 +4,19 @@
   flex-direction: column;
   max-width: 360px;
   margin: 0 auto;
+  transition: .4s;
+}
+
+.card:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 .card__image {
   border-radius: 9px;
   width: 100%;
   border: none;
+  height: 201px;
 }
 
 .card__info {
@@ -18,7 +25,7 @@
 }
 
 .card__title {
-  margin: 14px 30px 0 14px;
+  margin: 14px 0 0 14px;
   font-size: 13px;
   max-height: 16px;
   font-weight: 500;
@@ -60,7 +67,7 @@
 
 .card__save:hover {
   cursor: pointer;
-  opacity: .6;
+  opacity: .8;
 }
 
 .card__saved {
@@ -74,14 +81,48 @@
   position: absolute;
   top: 14px;
   right: 14px;
+  border: none;
+  padding: 0;
+  transition: .4s;
+}
+
+.card__saved:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.card__delete {
+  width: 21px;
+  height: 21px;
+  background-color: #313131;
+  background-image: url(../../images/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  transition: .4s;
+}
+
+.card__delete:hover {
+  cursor: pointer;
+  opacity: .8;
 }
 
 @media screen and (max-width: 1279px) {
   .card__title {
     margin: 25px 0 0 0;
   }
+
   .card__duration {
     margin: 25px 0 0 0;
+  }
+
+  .card__image {
+    height: 190px;
   }
 }
 
@@ -90,14 +131,19 @@
     max-width: 300px;
     margin: 0 auto;
   }
+
   .card__title {
     margin-top: 16px;
     width: 240px;
     font-size: 12px;
     max-height: 15px;
   }
+
   .card__duration {
     margin-top: 16px;
   }
-}
 
+  .card__image {
+    height: 168px;
+  }
+}

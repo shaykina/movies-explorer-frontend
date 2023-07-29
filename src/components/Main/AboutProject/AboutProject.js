@@ -4,7 +4,7 @@ import Heading from '../../Heading/Heading';
 function AboutProject() {
   return (
     <section className="about-project">
-      <Heading title="О проекте"/>
+      <Heading title="О проекте" />
       <div className="about-project__text">
         <div className="about-project__column">
           <p className="about-project__first-paragraph">Дипломный проект включал 5 этапов</p>
